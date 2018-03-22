@@ -1,4 +1,4 @@
-LIBS =  libgoodbye.a libhello.so
+LIBS =  libgoodbye.a libhello.a
 
 
 .PHONY: all clean install
@@ -17,10 +17,10 @@ libgoodbye.a: libgoodbye.o
 			ar crs libgoodbye.a libgoodbye.o
 libgoodbye.o: libgoodbye.c
 			gcc libgoodbye.c -c -o libgoodbye.o
-libhello.so: libhello.o
-			gcc --shared -o libhello.so libhello.o
+libhello.a: libhello.o
+			ar crs libhello.a libhello.o
 libhello.o: libhello.c
-			gcc libhello.c -c -Wall -fPIC  -o libhello.o
+			gcc libhello.c -c  -o libhello.o
 install:
 			./hello
 

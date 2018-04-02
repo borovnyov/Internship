@@ -22,5 +22,8 @@ libhello.so: libhello.o
 libhello.o: libhello.c
 			gcc libhello.c -c -Wall -fPIC  -o libhello.o
 install:
-			./hello
+			sudo cp libhello.so /usr/lib/
+uninstall:
+			sudo rm /usr/lib/libhello.so
+
 

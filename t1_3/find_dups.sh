@@ -16,7 +16,7 @@ do
     
     case $1 in
 	cont|name)	    
-		mode=$1; shift  ;  ;;
+		mode=$1; shift  ;;
 	*.sh)	   
 		script_name=$1; shift  ;;
 	*/*|.)

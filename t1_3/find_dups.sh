@@ -5,72 +5,39 @@ read -n 1 -p "Are you sure  to start  (y/[a]): " AMSURE
 echo "" 1>&2
 
 ##    default equals of arg
-target_dir="."
+DIR="."
 script_name="rm_dups.sh"
 mode="name"
-count=$#
 
 
-while ((count))
+
+while [ $# -gt 0 ] 
 do
     
-    case "$count" in
-	"1")	 
-	    if [  $1 = cont ] 
-	    then
-		mode=$1
-	    elif [ $1 = "*.sh" ]
-	    then
-		script_name=$1
-	    elif [ $1 ]
-	    then
-		
-		target_dir=$1
-	    fi
-	    ;;
-	"2")
-	    if [ $2 = "cont" ] 
-	    then
-		mode=$2
-	    elif [ $2 = "*.sh" ]
-	    then
-		script_name=$2
-	    elif [ $2 ]
-	    then
-		
-		target_dir=$2
-	    fi
-	    ;;
-	"3")
-	    if [ $3 = "name" || $3 = "cont" ] 
-	    then
-		mode=$3
-	    elif [ $3 = "*.sh" ]
-	    then
-		script_name=$3
-	    elif [ $3 ]
-	    then
-		
-		target_dir=$3
-	    fi
-	    ;;
-    esac
-    ((count--))
+    case $1 in
+	cont|name)	    
+		mode=$1; shift  ;  ;;
+	*.sh)	   
+		script_name=$1; shift  ;;
+	*/*|.)
+	    DIR=$1; shift  ;;
+    esac  
 done
+
 echo '#! /bin/bash' > $script_name
 case "$mode" in
     "name")
 	
-	find $1 -type f -printf "%f\n" | sort | uniq  -d |
+	find $DIR -type f -printf "%f\n" | sort | uniq  -d |
 	    while  read line
 	    do
 		echo "####----------|${line}|-------" >> $script_name
-		find $1 -type f  -name "${line}" -printf "#rm %p\n" |
+		find $DIR -type f  -name "${line}" -printf "#rm %p\n" |
 		    sed -e 's/ /\\ /g' -e 's/\\ / /'1 >> $script_name	 
 	    done 
 	;;
     "cont")
-	find $1 -type f -printf "%p\n" |
+	find $DIR -type f -printf "%p\n" |
 	    while read line
 	    do
 		md5sum  "${line}" >> hash_sum

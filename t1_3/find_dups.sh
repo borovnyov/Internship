@@ -16,7 +16,7 @@ do
     
     case "$count" in
 	"1")	 
-	    if [  $1 = cont ] 
+	    if [ $2 = "name" ] || [  $1 = cont ] 
 	    then
 		mode=$1
 	    elif [ $1 = "*.sh" ]
@@ -29,7 +29,7 @@ do
 	    fi
 	    ;;
 	"2")
-	    if [ $2 = "cont" ] 
+	    if [ $2 = "name" ] || [ $2 = "cont" ] 
 	    then
 		mode=$2
 	    elif [ $2 = "*.sh" ]
@@ -42,7 +42,7 @@ do
 	    fi
 	    ;;
 	"3")
-	    if [ $3 = "name" || $3 = "cont" ] 
+	    if [ $3 = "name" ] || [ $3 = "cont" ] 
 	    then
 		mode=$3
 	    elif [ $3 = "*.sh" ]

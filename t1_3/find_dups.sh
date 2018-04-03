@@ -13,10 +13,11 @@ count=$#
 
 while ((count))
 do
-    
+    shift
+    echo $1
     case "$count" in
 	"1")	 
-	    if [ $2 = "name" ] || [  $1 = cont ] 
+	    if [ $1 = "name" ] || [  $1 = cont ] 
 	    then
 		mode=$1
 	    elif [ $1 = "*.sh" ]

@@ -3,12 +3,17 @@
 read -n 1 -p "Are you sure  to start  (y/[a]): " AMSURE 
 [ "$AMSURE" = "y" ] || exit 
 echo "" 1>&2
-
+if [[ $# = 0 ]]
+then
+    echo "No arguments"
+else
+    
 ##    default equals of arg
 DIR="."
 script_name="rm_dups.sh"
 mode="name"
 
+       
 while [ $# -gt 0 ] 
 do      
     case $1 in
@@ -52,5 +57,4 @@ case "$mode" in
 	    done
 	;;
 esac
-
-
+fi 

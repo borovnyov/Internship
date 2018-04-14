@@ -49,10 +49,10 @@ case "$mode" in
 	    while read line
 	    do
 		echo "####----------|$line|-------" >> $script_name 
-		grep $line hash_sum | awk -F\ / '{print $2}' |  
+		grep $line hash_sum | awk -F\ \ ./ '{print $2}' |  
 		    while read line2
 		    do			
-			echo "#rm /$line2"   | sed -e 's/ /\\ /g' -e 's/\\ / /'1 >> $script_name
+			echo "#rm /$line2"   | sed -e 's/ /\\ /g' -e 's/\\ / /1' >> $script_name
 		    done		
 	    done
 	;;

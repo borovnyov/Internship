@@ -35,8 +35,8 @@ case "$mode" in
 	    while  read line
 	    do
 		echo "####----------|${line}|-------" >> $script_name
-		find $DIR -type f  -name "${line}" -printf "#rm %p\n" |
-		    sed -e 's/ /\\ /g' -e 's/\\ / /'1 >> $script_name	 
+		find $DIR -type f  -name "*$line" -printf "#rm %p\n" |
+		    sed -e 's/ /\\ /g' -e 's/\\ / /1' >> $script_name	 
 	    done 
 	;;
     "cont")
